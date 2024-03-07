@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Coupon;
-use App\Exception\NotFoundException;
+use App\Enum\DiscountType;
 use App\Repository\CouponRepository;
 
 class CalculateDiscountPriceService
@@ -23,7 +23,7 @@ class CalculateDiscountPriceService
         $coupon = $this->couponRepository->findOneByCode($code);
 
         if ($coupon) {
-            return $coupon->getType() === 'fix' ? $coupon->getValue() : $price / $coupon->getValue();
+            return $coupon->getType() === DiscountType::FIX->value ? $coupon->getValue() : $price / $coupon->getValue();
         }
 
         return 0.0;
