@@ -24,7 +24,7 @@ class ApiController extends AbstractController
         $calculatePriceDTO = CalculatePriceDTO::fromRequest($request);
 
         return $this->json([
-            'price' => $calculatePriceService->calculate($calculatePriceDTO->productId, $calculatePriceDTO->couponCode, $calculatePriceDTO->taxNumber),
+            'price' => $calculatePriceService->calculate($calculatePriceDTO->productId, $calculatePriceDTO->taxNumber, $calculatePriceDTO->couponCode),
         ]);
     }
 
